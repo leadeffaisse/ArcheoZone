@@ -4,6 +4,7 @@ $metaDescription = "Description de la boutique";
 
 include('data/catalog.php');
 include('templates/header.php');
+include('my-functions.php');
 ?>
 
 <main>

@@ -5,7 +5,14 @@
             <h2><?php echo $product['nom']; ?></h2>
             <p class="card-text">Description du produit : <?php echo $product['description'] ?? "Pas de description disponible"; ?></p>
             <div class="d-flex flex-column align-items-center">
-                <p><strong>Prix : <?php echo number_format($product['prix'], 2, ',', ' '); ?> €</strong></p>
+                <div class="btn-group btn-group-sm m-2" role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-primary">-<?php echo $product['discount'] ?? "Pas de promotion"; ?> %</button>
+                    <button type="button" class="btn btn-outline-primary"><s><?php echo formatPrice($product['prix'], 2, ',', ' '); ?></s></button>
+                </div>
+                <div class="d-flex gap-2">
+                    <h4><strong><?php echo discountedprice($product['prix'], $product['discount']); ?></strong></h4>
+                    <p class="fw-lighter"><?php echo pricexcludingVAT($product['prix'], $product['discount']); ?> HT</p>
+                </div>
                 <button class="btn btn-primary" type="button">Ajouter au panier</button>
             </div>
         </div>
