@@ -12,7 +12,7 @@ $products = array(
         "id" => 2,
         "nom" => "Pinceau",
         "prix" => 450,
-        "discount" => 10,
+        "discount" => 0,
         "imageURL" => "images/pinceau.jpg",
         "description" => "Pinceau à poils souples parfait pour nettoyer les fragments fragiles et les céramiques anciennes sans les abîmer."
     ],
@@ -28,7 +28,7 @@ $products = array(
         "id" => 4,
         "nom" => "Carnet de terrain",
         "prix" => 350,
-        "discount" => 10,
+        "discount" => 0,
         "imageURL" => "images/carnet.jpg",
         "description" => "Carnet résistant à l’eau avec quadrillage pour croquis. Papier indéchirable, 60 pages, indispensable sur les chantiers."
     ],
@@ -36,7 +36,7 @@ $products = array(
         "id" => 5,
         "nom" => "Pelle",
         "prix" => 2000,
-        "discount" => 10,
+        "discount" => 20,
         "imageURL" => "images/pelle.jpg",
         "description" => "Pelle légère en aluminium, parfaite pour les fouilles. Manche ergonomique et tête en acier inoxydable résistante."
     ],
@@ -68,7 +68,7 @@ $products = array(
         "id" => 9,
         "nom" => "Casque de sécurité",
         "prix" => 2500,
-        "discount" => 10,
+        "discount" => 20,
         "imageURL" => "images/casque.jpg",
         "description" => "Casque de sécurité léger et confortable, conforme aux normes de sécurité. Idéal pour les chantiers archéologiques."
     ],
