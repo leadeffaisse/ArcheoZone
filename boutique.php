@@ -3,8 +3,24 @@ $pageTitle = "Boutique";
 $metaDescription = "Description de la boutique";
 
 include('data/catalog.php');
-include('templates/header.php');
 include('my-functions.php');
+include('templates/header.php');
+
+// Traitement de l'ajout au panier
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
+    $product_id = (int)$_POST['product_id'];
+    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+    
+    // Validation
+    if ($quantity > 0 && $quantity <= 10 && isset($products[$product_id])) {
+        addToCart($product_id, $quantity);
+        $message = "Produit ajouté au panier avec succès !";
+    } else {
+        $error = "Erreur lors de l'ajout au panier.";
+    }
+}
+
+$cartItemCount = getCartItemCount();
 ?>
 
 <main>
@@ -48,10 +64,10 @@ include('my-functions.php');
                                     <?php endif; ?>
                                     <h2><strong><?php echo discountedprice($product['prix'], $product['discount']); ?></strong></h2>
                                     <p class="card-text"><?php echo $product['description'] ?? "Pas de description disponible"; ?></p>
-                                    <form action="cart.php" method="post">
+                                    <form action="boutique.php" method="post">
                                         <div class="mb-3">
                                             <label for="quantity<?php echo $product['id']; ?>">Quantité :</label>
-                                            <input type="number" id="quantity<?php echo $product['id']; ?>" name="quantity" min="1" max="10" value="1">
+                                            <input type="number" id="quantity<?php echo $product['id']; ?>" name="quantity" min="1" max="99" value="1">
                                         </div>
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <button type="submit" class="btn btn-primary">Ajouter au panier</button>
@@ -68,5 +84,42 @@ include('my-functions.php');
         <?php endforeach; ?>
     </div>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation pour l'ajout au panier
+    const addToCartForms = document.querySelectorAll('form[method="post"]');
+    
+    addToCartForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Ajout...';
+            button.disabled = true;
+            
+            // Réactiver après soumission
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 1000);
+        });
+    });
+    
+    // Validation des quantités
+    const quantityInputs = document.querySelectorAll('input[name="quantity"]');
+    
+    quantityInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            if (value < 1) {
+                this.value = 1;
+            } else if (value > 10) {
+                this.value = 10;
+            }
+        });
+    });
+});
+</script>
 
 <?php include('templates/footer.php'); ?>

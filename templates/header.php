@@ -24,10 +24,10 @@
                 <div class="collapse navbar-collapse" id="navbarsExample03">
                     <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/accueil.html">Accueil</a>
+                            <a class="nav-link active" aria-current="page" href="/index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/catalogue.html">Boutique</a>
+                            <a class="nav-link" href="/boutique.php">Boutique</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
